@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You Anu 💖</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff6b9d, #ff3366, #c0006e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    .message {
+      text-align: center;
+      z-index: 10;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .message h1 {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      color: white;
+      text-shadow: 0 0 30px rgba(255,255,255,0.8), 0 4px 20px rgba(0,0,0,0.3);
+      letter-spacing: 2px;
+      line-height: 1.3;
+    }
+
+    .message .big-heart {
+      font-size: clamp(4rem, 12vw, 9rem);
+      display: block;
+      margin-top: 10px;
+      animation: heartbeat 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.2); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -60px;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      10%  { opacity: 1; }
+      80%  { opacity: 0.8; }
+      100% { transform: translateY(-110vh) rotate(25deg) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message">
+    <h1>I Love You<br>Anu</h1>
+    <span class="big-heart">💖</span>
+  </div>
+
+  <script>
+    const heartEmojis = ['❤️','💖','💗','💓','💝','💕','🩷','💞','♥️'];
+    const count = 35;
+
+    for (let i = 0; i < count; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+      const dur = 4 + Math.random() * 7;
+      const delay = Math.random() * 8;
+      heart.style.animationDuration = dur + 's';
+      heart.style.animationDelay = delay + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
